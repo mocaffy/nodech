@@ -40,7 +40,7 @@ const defaultName = '以下、GlitchからNode.jsがお送りします'
 
 const app = express()
 app.listen(3000)
-// app.use(express.static(path.resolve(__dirname, 'public')))
+
 app.use(
   bodyParser.urlencoded({
     extended: true
@@ -49,7 +49,7 @@ app.use(
 let rescount = 1
 let dat = `${defaultName}<><><>シンプルな2ch互換掲示板です<>簡易掲示板\n`
 
-app.get('/search/subject.txt', function (req, res) {
+app.get('/node/subject.txt', function (req, res) {
   res.send(
     iconv.encode(
       `9999999999.dat<>検索システムテスト (${rescount})`,
@@ -58,22 +58,17 @@ app.get('/search/subject.txt', function (req, res) {
   )
 })
 
-app.get('/search/dat/9999999999.dat', function (req, res) {
+app.get('/node/dat/9999999999.dat', function (req, res) {
   res.send(iconv.encode(dat, 'Shift_JIS'))
 })
-// app.get('/', function(req, res) {
-//   res.sendFile(__dirname + '/index.html')
-// })
 
 app.post('/test/bbs.cgi', function (req, res) {
   let body = req.body
   let message = UnescapeSJIS(body.MESSAGE)
-  rescount++
   let msg =
     `${defaultName}<><>${KeytoDate(new Date())}<> ${
       message
     } <>  ` + '\n'
-  rescount++
   console.log(message)
   dat += msg
   res.send(`<html lang="ja">
