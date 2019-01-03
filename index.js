@@ -39,7 +39,7 @@ const KeytoDate = Key => {
 const defaultName = '以下、GlitchからNode.jsがお送りします'
 
 const app = express()
-app.listen(8000)
+app.listen(3000)
 // app.use(express.static(path.resolve(__dirname, 'public')))
 app.use(
   bodyParser.urlencoded({
